@@ -1,0 +1,17 @@
+# Dataset - do not upload the large original dataset
+dataset/creditcard.csv
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Keras Tuner generated files
+keras_tuner_results/
