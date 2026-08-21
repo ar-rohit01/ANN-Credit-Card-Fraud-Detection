@@ -10,17 +10,17 @@ Credit card fraud detection is a binary classification problem where the objecti
 
 This project demonstrates an end-to-end Machine Learning and Deep Learning workflow including:
 
-- Exploratory Data Analysis (EDA)
-- Data cleaning and preprocessing
-- Handling class imbalance using SMOTE
-- Feature scaling
-- Train, validation and test splitting
-- Building a Vanilla Artificial Neural Network
-- Hyperparameter tuning using Keras Tuner
-- Building a Tuned ANN
-- Comparison with traditional Machine Learning algorithms
-- Model evaluation using multiple classification metrics
-- Saving the trained model and preprocessing artifacts
+* Exploratory Data Analysis (EDA)
+* Data cleaning and preprocessing
+* Handling class imbalance using SMOTE
+* Feature scaling
+* Train, validation and test splitting
+* Building a Vanilla Artificial Neural Network
+* Hyperparameter tuning using Keras Tuner
+* Building a Tuned ANN
+* Comparison with traditional Machine Learning algorithms
+* Model evaluation using multiple classification metrics
+* Saving the trained model and preprocessing artifacts
 
 ---
 
@@ -41,23 +41,23 @@ This project demonstrates an end-to-end Machine Learning and Deep Learning workf
 
 ## Dataset
 
-The project uses the Credit Card Fraud Detection dataset.
+The project uses the **Credit Card Fraud Detection** dataset.
 
 The target variable is `Class`:
 
-- `0` → Genuine transaction
-- `1` → Fraudulent transaction
+* `0` → Genuine transaction
+* `1` → Fraudulent transaction
 
 ### Main Features
 
-- `Time`
-- `V1` to `V28`
-- `Amount`
-- `Class`
+* `Time`
+* `V1` to `V28`
+* `Amount`
+* `Class`
 
 The `V1`–`V28` features are anonymized/PCA-transformed features.
 
-> Note: The original dataset is not included in this GitHub repository. Please obtain the dataset from its original source and place the required CSV file inside the `dataset/` directory.
+> **Note:** The original `creditcard.csv` dataset is not included in this GitHub repository due to its size. Download the Credit Card Fraud Detection dataset from its original source and place `creditcard.csv` inside the `dataset/` directory before running the notebook.
 
 ---
 
@@ -67,30 +67,30 @@ The project performs both non-visual and visual analysis.
 
 ### Non-Visual Analysis
 
-- Dataset shape
-- Data types
-- Missing values
-- Duplicate records
-- Descriptive statistics
-- Target variable distribution
-- Unique values
-- Class imbalance
+* Dataset shape
+* Data types
+* Missing values
+* Duplicate records
+* Descriptive statistics
+* Target variable distribution
+* Unique values
+* Class imbalance
 
 ### Visual Analysis
 
-- Class distribution
-- Transaction amount distribution
-- Transaction amount by class
-- Transaction time distribution
-- Feature correlation
+* Class distribution
+* Transaction amount distribution
+* Transaction amount by class
+* Transaction time distribution
+* Feature correlation
 
 ### Key EDA Observations
 
-- The dataset contains a severe class imbalance.
-- Fraudulent transactions represent a very small proportion of all transactions.
-- Transaction amounts are highly skewed.
-- The `Time` feature provides information about transaction timing.
-- The anonymized `V1`–`V28` features have different relationships with the target variable.
+* The dataset contains a severe class imbalance.
+* Fraudulent transactions represent a very small proportion of all transactions.
+* Transaction amounts are highly skewed.
+* The `Time` feature provides information about transaction timing.
+* The anonymized `V1`–`V28` features have different relationships with the target variable.
 
 ---
 
@@ -109,9 +109,9 @@ The preprocessing workflow includes:
 
 The dataset is divided into:
 
-- Training set
-- Validation set
-- Test set
+* Training set
+* Validation set
+* Test set
 
 The test set is kept separate for final model evaluation.
 
@@ -121,17 +121,21 @@ The test set is kept separate for final model evaluation.
 
 The dataset contains a highly imbalanced target variable.
 
-To address this issue, SMOTE (Synthetic Minority Over-sampling Technique) was applied to the training data.
+To address this issue, **SMOTE (Synthetic Minority Over-sampling Technique)** was applied to the training data.
 
 SMOTE generates synthetic samples for the minority class instead of simply duplicating existing observations.
 
-> SMOTE was applied only to the training data to avoid data leakage into the validation and test sets.
+> **Important:** SMOTE was applied only to the training data to avoid data leakage into the validation and test sets.
+
+### SMOTE Visualization
+
+![SMOTE Before and After](images/smote_before_after.png)
 
 ---
 
 ## Vanilla Artificial Neural Network
 
-A baseline Artificial Neural Network was developed using TensorFlow and Keras.
+A baseline Artificial Neural Network was developed using **TensorFlow and Keras**.
 
 ### Architecture
 
@@ -153,36 +157,40 @@ Sigmoid Output Layer
 
 ### Training Configuration
 
-- Optimizer: Adam
-- Loss Function: Binary Cross-Entropy
-- Output Activation: Sigmoid
-- Early Stopping
-- Validation Monitoring
+* Optimizer: Adam
+* Loss Function: Binary Cross-Entropy
+* Output Activation: Sigmoid
+* Early Stopping
+* Validation Monitoring
 
 ### Vanilla ANN Results
 
-| Metric | Score |
-|---|---:|
-| Precision | 0.182 |
-| Recall | 0.926 |
-| F1-score | 0.304 |
-| ROC-AUC | ~0.997 |
-| PR-AUC | ~0.731 |
+| Metric    |  Score |
+| --------- | -----: |
+| Precision |  0.182 |
+| Recall    |  0.926 |
+| F1-score  |  0.304 |
+| ROC-AUC   | ~0.997 |
+| PR-AUC    | ~0.731 |
 
 The Vanilla ANN achieved high recall but relatively low precision, resulting in a larger number of false positives.
+
+### Vanilla ANN Confusion Matrix
+
+![Vanilla ANN Confusion Matrix](images/vanilla_ann_confusion_matrix.png)
 
 ---
 
 ## ANN Fine-Tuning using Keras Tuner
 
-Keras Tuner was used to search for a better-performing ANN architecture.
+**Keras Tuner** was used to search for a better-performing ANN architecture.
 
 ### Hyperparameters Tuned
 
-- Number of hidden layers
-- Number of neurons
-- Dropout rate
-- Learning rate
+* Number of hidden layers
+* Number of neurons
+* Dropout rate
+* Learning rate
 
 ### Selected Tuned ANN Architecture
 
@@ -200,15 +208,19 @@ Sigmoid Output Layer
 
 ### Tuned ANN Results
 
-| Metric | Score |
-|---|---:|
+| Metric    | Score |
+| --------- | ----: |
 | Precision | 0.806 |
-| Recall | 0.735 |
-| F1-score | 0.769 |
-| ROC-AUC | 0.994 |
-| PR-AUC | 0.738 |
+| Recall    | 0.735 |
+| F1-score  | 0.769 |
+| ROC-AUC   | 0.994 |
+| PR-AUC    | 0.738 |
 
 The Tuned ANN provided a much better balance between precision and recall compared with the Vanilla ANN.
+
+### Tuned ANN Training Loss
+
+![Tuned ANN Loss Curve](images/tuned_ann_loss_curve.png)
 
 ---
 
@@ -224,19 +236,25 @@ The following models were evaluated:
 
 ### Model Comparison
 
-| Model | Precision | Recall | F1-score |
-|---|---:|---:|---:|
-| Logistic Regression | 0.069 | 0.912 | 0.127 |
-| Vanilla ANN | 0.182 | 0.926 | 0.304 |
-| Tuned ANN | 0.806 | 0.735 | 0.769 |
-| XGBoost | 0.792 | 0.897 | 0.841 |
-| Random Forest | 0.905 | 0.838 | 0.870 |
+| Model               | Precision | Recall | F1-score |
+| ------------------- | --------: | -----: | -------: |
+| Logistic Regression |     0.069 |  0.912 |    0.127 |
+| Vanilla ANN         |     0.182 |  0.926 |    0.304 |
+| Tuned ANN           |     0.806 |  0.735 |    0.769 |
+| XGBoost             |     0.792 |  0.897 |    0.841 |
+| Random Forest       |     0.905 |  0.838 |    0.870 |
+
+### F1-Score Comparison
+
+![Model F1-Score Comparison](images/model_comparison_f1.png)
 
 ### Best Performing Model
 
-Random Forest achieved the highest F1-score of **0.870** among the compared models.
+Random Forest achieved the highest F1-score of **0.870** among the evaluated models.
 
 The Tuned ANN achieved an F1-score of **0.769**, showing a significant improvement over the Vanilla ANN.
+
+This comparison demonstrates that while the ANN provided strong performance, traditional Machine Learning models performed better on this particular tabular dataset.
 
 ---
 
@@ -246,14 +264,14 @@ Because fraud detection is a highly imbalanced classification problem, accuracy 
 
 The following metrics were used:
 
-- Precision
-- Recall
-- F1-score
-- ROC-AUC
-- PR-AUC
-- Confusion Matrix
-- ROC Curve
-- Precision-Recall Curve
+* Precision
+* Recall
+* F1-score
+* ROC-AUC
+* PR-AUC
+* Confusion Matrix
+* ROC Curve
+* Precision-Recall Curve
 
 ### Precision
 
@@ -277,27 +295,45 @@ Provides useful evaluation information for highly imbalanced classification prob
 
 ---
 
+## Final Model Evaluation Visualizations
+
+### Tuned ANN Confusion Matrix
+
+![Tuned ANN Confusion Matrix](images/tuned_ann_confusion_matrix.png)
+
+### Precision-Recall Curve
+
+![Precision-Recall Curve](images/precision_recall_curve.png)
+
+### ROC Curve
+
+![ROC Curve](images/roc_curve.png)
+
+---
+
 ## Project Visualizations
 
 ### Exploratory Data Analysis
 
-- Class distribution
-- Transaction amount distribution
-- Transaction amount by class
-- Transaction time distribution
-- Correlation heatmap
+#### 1. Class Distribution
 
-### Model Development and Evaluation
+![Class Distribution](images/class_distribution.png)
 
-- Vanilla ANN confusion matrix
-- SMOTE before/after comparison
-- Tuned ANN learning curve
-- Model F1-score comparison
-- ROC curve
-- Precision-Recall curve
-- Tuned ANN confusion matrix
+#### 2. Transaction Amount Distribution
 
-All visualization files are available inside the `images/` directory.
+![Transaction Amount Distribution](images/transaction_amount_distribution.png)
+
+#### 3. Transaction Amount by Class
+
+![Transaction Amount by Class](images/transaction_amount_by_class.png)
+
+#### 4. Transaction Time Distribution
+
+![Transaction Time Distribution](images/transaction_time_distribution.png)
+
+#### 5. Correlation Heatmap
+
+![Correlation Heatmap](images/correlation_heatmap.png)
 
 ---
 
@@ -314,15 +350,15 @@ model/
 
 ### File Description
 
-**credit_card_fraud_tuned_ann.keras**
+**`credit_card_fraud_tuned_ann.keras`**
 
 The final trained Tuned ANN model.
 
-**credit_card_fraud_scaler.pkl**
+**`credit_card_fraud_scaler.pkl`**
 
 The feature scaler used during preprocessing.
 
-**credit_card_fraud_threshold.txt**
+**`credit_card_fraud_threshold.txt`**
 
 The classification threshold used by the project.
 
@@ -335,7 +371,9 @@ ANN-Credit-Card-Fraud-Detection/
 │
 ├── README.md
 ├── requirements.txt
-├── ANN_Credit_Card_Fraud_Detection.ipynb
+│
+├── Project file/
+│   └── ANN_Credit_Card_Fraud_Detection.ipynb
 │
 ├── dataset/
 │   └── creditcard.csv
@@ -363,22 +401,24 @@ ANN-Credit-Card-Fraud-Detection/
     └── model_comparison_results.csv
 ```
 
+> **Note:** The `creditcard.csv` file is excluded from the GitHub repository using `.gitignore`. It is shown above only to represent the expected local project structure.
+
 ---
 
 ## Technologies Used
 
-- Python
-- NumPy
-- Pandas
-- Matplotlib
-- Seaborn
-- Scikit-learn
-- TensorFlow
-- Keras
-- Keras Tuner
-- Imbalanced-learn
-- XGBoost
-- Google Colab
+* Python
+* NumPy
+* Pandas
+* Matplotlib
+* Seaborn
+* Scikit-learn
+* TensorFlow
+* Keras
+* Keras Tuner
+* Imbalanced-learn
+* XGBoost
+* Google Colab
 
 ---
 
@@ -423,14 +463,14 @@ creditcard.csv
 Open:
 
 ```text
-ANN_Credit_Card_Fraud_Detection.ipynb
+Project file/ANN_Credit_Card_Fraud_Detection.ipynb
 ```
 
 The notebook can be run using:
 
-- Google Colab
-- Jupyter Notebook
-- JupyterLab
+* Google Colab
+* Jupyter Notebook
+* JupyterLab
 
 Run the cells sequentially.
 
@@ -438,36 +478,39 @@ Run the cells sequentially.
 
 ## Key Findings
 
-- The dataset suffers from severe class imbalance.
-- SMOTE was used to improve minority-class representation during training.
-- The Vanilla ANN achieved very high recall but comparatively low precision.
-- Keras Tuner improved the ANN architecture and precision-recall balance.
-- The Tuned ANN achieved an F1-score of **0.769**.
-- Traditional Machine Learning models performed strongly on this dataset.
-- Random Forest achieved the highest F1-score of **0.870** among the evaluated models.
-- Fraud detection requires careful consideration of Precision, Recall and F1-score rather than relying only on accuracy.
+* The dataset suffers from severe class imbalance.
+* SMOTE was used to improve minority-class representation during training.
+* The Vanilla ANN achieved very high recall but comparatively low precision.
+* Keras Tuner improved the ANN architecture and precision-recall balance.
+* The Tuned ANN achieved an F1-score of **0.769**.
+* Traditional Machine Learning models performed strongly on this dataset.
+* Random Forest achieved the highest F1-score of **0.870** among the evaluated models.
+* XGBoost achieved an F1-score of **0.841**.
+* Fraud detection requires careful consideration of Precision, Recall and F1-score rather than relying only on accuracy.
+* The results demonstrate that model selection should depend on the specific requirements of the fraud detection problem.
 
 ---
 
 ## Future Scope
 
-- Cost-sensitive learning
-- Advanced anomaly detection techniques
-- Further hyperparameter optimization
-- Threshold optimization based on business requirements
-- Handling concept drift
-- Real-time fraud detection
-- Model monitoring and periodic retraining
-- Deployment as an API or web application
+* Cost-sensitive learning
+* Advanced anomaly detection techniques
+* Further hyperparameter optimization
+* Threshold optimization based on business requirements
+* Handling concept drift
+* Real-time fraud detection
+* Model monitoring and periodic retraining
+* Deployment as an API or web application
 
 ---
 
 ## Limitations
 
-- The V1–V28 features are anonymized/PCA-transformed features, limiting direct business interpretation.
-- Fraud detection performance can change when transaction patterns change over time.
-- The project is developed as an academic/project implementation and is not a production fraud detection system.
-- The original dataset is not included in the GitHub repository.
+* The `V1`–`V28` features are anonymized/PCA-transformed features, limiting direct business interpretation.
+* Fraud detection performance can change when transaction patterns change over time.
+* The project is developed as an academic/project implementation and is not a production fraud detection system.
+* The original dataset is not included in the GitHub repository.
+* Model performance may vary depending on data preprocessing, sampling strategy and classification threshold.
 
 ---
 
@@ -479,17 +522,17 @@ Run the cells sequentially.
 
 ### Areas of Interest
 
-- Artificial Intelligence
-- Machine Learning
-- Deep Learning
-- Data Science
-- Computer Vision
-- Intelligent Automation
+* Artificial Intelligence
+* Machine Learning
+* Deep Learning
+* Data Science
+* Computer Vision
+* Intelligent Automation
 
 ### Connect With Me
 
-- LinkedIn: https://www.linkedin.com/in/rohit-yadav-6b8999299
-- GitHub: https://github.com/ar-rohit01
+* LinkedIn: https://www.linkedin.com/in/rohit-yadav-6b8999299
+* GitHub: https://github.com/ar-rohit01
 
 ---
 
@@ -501,4 +544,4 @@ The complete workflow includes:
 
 **Data Exploration → Data Preprocessing → Class Imbalance Handling → Vanilla ANN → Keras Tuner → Tuned ANN → Machine Learning Comparison → Model Evaluation → Final Analysis**
 
-The project demonstrates the practical implementation of Deep Learning techniques for an imbalanced binary classification problem.
+The project demonstrates the practical implementation of Deep Learning and Machine Learning techniques for an imbalanced binary classification problem.
