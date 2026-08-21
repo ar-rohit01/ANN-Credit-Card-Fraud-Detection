@@ -341,18 +341,18 @@ ANN-Credit-Card-Fraud-Detection/
 │   └── creditcard.csv
 │
 ├── images/
-│   ├── 01_class_distribution.png
-│   ├── 02_transaction_amount_distribution.png
-│   ├── 03_transaction_amount_by_class.png
-│   ├── 04_transaction_time_distribution.png
-│   ├── 05_correlation_heatmap.png
-│   ├── 06_vanilla_ann_confusion_matrix.png
-│   ├── slide12_smote_before_after.png
-│   ├── slide16_tuned_ann_loss_curve.png
-│   ├── slide17_model_comparison_f1.png
-│   ├── slide19_confusion_matrix.png
-│   ├── slide19_precision_recall.png
-│   └── slide19_roc.png
+│   ├── class_distribution.png
+│   ├── correlation_heatmap.png
+│   ├── model_comparison_f1.png
+│   ├── precision_recall_curve.png
+│   ├── roc_curve.png
+│   ├── smote_before_after.png
+│   ├── transaction_amount_by_class.png
+│   ├── transaction_amount_distribution.png
+│   ├── transaction_time_distribution.png
+│   ├── tuned_ann_confusion_matrix.png
+│   ├── tuned_ann_loss_curve.png
+│   └── vanilla_ann_confusion_matrix.png
 │
 ├── model/
 │   ├── credit_card_fraud_tuned_ann.keras
