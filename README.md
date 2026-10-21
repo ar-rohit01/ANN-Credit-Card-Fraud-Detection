@@ -531,7 +531,7 @@ Run the cells sequentially.
 
 ### Connect With Me
 
-* LinkedIn: https://www.linkedin.com/in/rohit-yadav-6b8999299
+* LinkedIn: www.linkedin.com/in/rohitryadavgenai
 * GitHub: https://github.com/ar-rohit01
 
 ---
